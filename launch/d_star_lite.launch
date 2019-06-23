@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <!-- planners, costmaps, etc -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" >
+    <param name="base_global_planner" value="d_star_lite::DStarPlanner"/>
+    <!-- <rosparam file="$(find d_star_lite)/config/costmap_common.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find d_star_lite)/config/costmap_common.yaml" command="load" ns="local_costmap" /> -->
+    <rosparam file="$(find d_star_lite)/config/costmap_global.yaml" command="load" />
+    <rosparam file="$(find d_star_lite)/config/costmap_global.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find d_star_lite)/config/costmap_local.yaml" command="load" />
+    <rosparam file="$(find d_star_lite)/config/costmap_local.yaml" command="load" ns="local_costmap"/>
+    <!-- <rosparam file="$(find d_star_lite)/config/move_base.yaml" command="load" /> -->
+  </node>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find d_star_lite)/maps/kitchen_map.yaml"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom_tf" output="screen"  args="0 0 0 0 0 0 map odom 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_base_link_tf" output="screen"  args="0 0 0 0 0 0 odom base_link 100" />
+
+</launch>

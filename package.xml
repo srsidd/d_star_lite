@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>d_star_lite</name>
+  <version>0.0.1</version>
+  <description>The d_star_lite package</description>
+
+  <maintainer email="srivatsasiddharth@gmail.com">Siddharth Srivatsa</maintainer>
+  <author email="srivatsasiddharth@gmail.com">Siddharth Srivatsa</author>
+  <license>TODO</license>
+  
+  <depend>roscpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>costmap_2d</depend>
+  <depend>nav_core</depend>
+  <depend>global_planner</depend>
+  <depend>base_local_planner</depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <nav_core plugin="${prefix}/dstar_planner_plugin.xml" />
+  </export>
+</package>
